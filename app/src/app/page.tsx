@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <main>
-      <Link href={`/a`}>a</Link>
+      <Link href={`/retore.bsky.social`}>retore.bsky.social</Link>
     </main>
   );
 }
