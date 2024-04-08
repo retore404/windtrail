@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Windtrail2",
+  title: "Windtrail",
   description: "Logging posts on Bluesky Social.",
 };
 
