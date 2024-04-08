@@ -1,3 +1,4 @@
+import { Card, CardContent, Typography } from "@mui/material";
 import { Metadata, ResolvingMetadata } from "next";
 
 // 引数の型定義
@@ -36,9 +37,11 @@ export default async function Page({ params, searchParams }: Props) {
   }
   const data = await res.json();
   return (
-    <section>
-      <h1>{params.username}</h1>
-      <span>{data.did}</span>
-    </section>
+    <Card>
+      <CardContent>
+        <Typography variant="h4">{params.username}</Typography>
+        <span>{data.did}</span>
+      </CardContent>
+    </Card>
   );
 }

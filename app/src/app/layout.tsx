@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./_component/Header";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 
 export const metadata: Metadata = {
   title: "Windtrail",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Header />
-        <section id="main">{children}</section>
+        <AppRouterCacheProvider>
+          <Header />
+          <section id="main">{children}</section>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
