@@ -1,17 +1,17 @@
 :root {
   --font-color: #4d5156;
-  --background-color: #E6F2FF;
-  --primary-main: #546C95;
-  --primary-2: #1DA1F2;
-  --primary-3: #6CB9FD;
-  --primary-4: #99CAF9;
-  --secondary: #E3246A;
+  --primary-main: #546c95;
+  --primary-light: #e6eaef;
+  --primary-dark: #203965;
+  --secondary-main: #d2b762;
+  --secondary-light: #fbe280;
+  --secondary-dark: #957d54;
 }
 
 body {
   margin: 0;
   color: var(--font-color);
-  background-color: var(--background-color);
+  background-color: var(--primary-light);
 }
 
 #main {
