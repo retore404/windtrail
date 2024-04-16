@@ -25,7 +25,5 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  return (
-    <UserInfo params={{username: params.username}}></UserInfo>
-  );
+  return <UserInfo params={{ username: params.username }}></UserInfo>;
 }

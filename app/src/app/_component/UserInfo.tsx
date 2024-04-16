@@ -1,4 +1,12 @@
-import { Avatar, Card, CardContent, Divider, Stack, StyledEngineProvider, Typography } from "@mui/material";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Divider,
+  Stack,
+  StyledEngineProvider,
+  Typography,
+} from "@mui/material";
 
 // 引数の型定義
 type Props = {
@@ -45,7 +53,7 @@ export default async function UserInfo({ params }: Props) {
       <CardContent>
         <Stack>
           <Stack direction="row" spacing={1}>
-            <Avatar alt="Cindy Baker" src={avatarImage} />
+            <Avatar alt="avatar" src={avatarImage} />
             <Typography variant="h4" component="h2">
               {displayName}
             </Typography>
