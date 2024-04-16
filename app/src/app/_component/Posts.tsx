@@ -7,7 +7,7 @@ import {
   StyledEngineProvider,
   Typography,
 } from "@mui/material";
-import { Post } from "../@types/type";
+import { Post } from "../_common/_types/type";
 import PostCard from "./PostCard";
 
 type PostsProps = {

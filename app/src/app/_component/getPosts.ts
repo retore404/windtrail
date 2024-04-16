@@ -1,6 +1,6 @@
 import { Dayjs } from "dayjs";
 import getDayJsObj from "./Dayjs";
-import { Post } from "../@types/type";
+import { Post } from "../_common/_types/type";
 
 // 引数の型定義
 type getPostsProps = {

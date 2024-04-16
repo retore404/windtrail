@@ -1,5 +1,5 @@
 import { Avatar, Card, CardContent, Stack, Typography } from "@mui/material";
-import { Post } from "../@types/type";
+import { Post } from "../_common/_types/type";
 import getDayJsObj from "./Dayjs";
 
 type PostProps = {
