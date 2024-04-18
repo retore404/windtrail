@@ -1,7 +1,5 @@
 import {
   Box,
-  Card,
-  CardContent,
   Divider,
   Stack,
   StyledEngineProvider,

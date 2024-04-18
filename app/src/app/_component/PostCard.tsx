@@ -1,6 +1,6 @@
 import { Avatar, Card, CardContent, Stack, Typography } from "@mui/material";
 import { Post } from "../_common/_types/type";
-import getDayJsObj from "./Dayjs";
+import getDayJs from "../_common/_functions/getDaysJs";
 
 type PostProps = {
   params: { post: Post };
@@ -10,7 +10,7 @@ export default function PostCard({ params }: PostProps) {
   if (params.post == undefined) {
     return null;
   }
-  const dayjs = getDayJsObj();
+  const dayjs = getDayJs();
   const postedAt = dayjs(params.post.createdAt)
     .tz()
     .format("YYYY-MM-DD HH:mm:ss");
