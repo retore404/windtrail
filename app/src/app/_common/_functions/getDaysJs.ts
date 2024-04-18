@@ -5,7 +5,7 @@ import timezone from "dayjs/plugin/timezone";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 
-function getDayJsObj() {
+function getDayJs() {
   dayjs.extend(utc);
   dayjs.extend(timezone);
   dayjs.extend(isSameOrAfter);
@@ -15,4 +15,4 @@ function getDayJsObj() {
   return dayjs;
 }
 
-export default getDayJsObj;
+export default getDayJs;

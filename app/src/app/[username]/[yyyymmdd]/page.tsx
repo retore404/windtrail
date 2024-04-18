@@ -1,9 +1,9 @@
-import getDayJsObj from "@/app/_component/Dayjs";
-import getPosts from "@/app/_component/getPosts";
+import getDayJs from "@/app/_common/_functions/getDaysJs";
+import getPosts from "@/app/_common/_functions/getPosts";
+import PageNavigation from "@/app/_component/PageNavigation";
 import Posts from "@/app/_component/Posts";
 import UserInfo from "@/app/_component/UserInfo";
 import { Box, Divider, StyledEngineProvider } from "@mui/material";
-import { Dayjs } from "dayjs";
 import { Metadata, ResolvingMetadata } from "next";
 
 // 引数の型定義
@@ -30,36 +30,21 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  // didの取得
-  const didRes = await fetch(
-    `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=` +
-      params.username,
-    {
-      next: { revalidate: 3600 },
-    },
-  );
-  if (didRes.status != 200) {
-    return <span>Could not get did.</span>;
-  }
-  const didData = await didRes.json();
-  const did = didData.did;
-
   // 指定された日付の0時0分0秒（JST）およびその翌日の日付の0時0分0秒（JST）をUTCで生成
-  const dayjs = getDayJsObj();
+  const dayjs = getDayJs();
   const todayYYYY = params.yyyymmdd.slice(0, 4);
   const todayMM = params.yyyymmdd.slice(4, 6);
   const todayDD = params.yyyymmdd.slice(6, 8);
-  const todayDate =
-    todayYYYY + "-" + todayMM + "-" + todayDD + "T00:00:00+09:00";
-  const todayStart = dayjs(todayDate).tz(); // JSTの本日0時
-  const todayEnd = todayStart.add(1, "day"); // JSTの翌日0時
+  const date = todayYYYY + "-" + todayMM + "-" + todayDD + "T00:00:00+09:00";
+  const startOfDate = dayjs(date).tz(); // JSTの本日0時
+  const endOfDate = startOfDate.add(1, "day"); // JSTの翌日0時
 
   // 指定された日付のポストを取得
   const getPostsParams = {
     params: {
-      did: did + "",
-      dateFrom: todayStart,
-      dateTo: todayEnd,
+      username: params.username,
+      dateFrom: startOfDate,
+      dateTo: endOfDate,
     },
   };
   const posts = await getPosts(getPostsParams);
@@ -76,6 +61,9 @@ export default async function Page({ params, searchParams }: Props) {
         />
       </StyledEngineProvider>
       <Posts params={{ postsDict: posts }} />
+      <PageNavigation
+        params={{ username: params.username, today: startOfDate, unit: "day" }}
+      />
     </Box>
   );
 }

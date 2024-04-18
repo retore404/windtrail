@@ -12,3 +12,7 @@ export type Post = {
   text: string;
   createdAt: Dayjs;
 };
+
+export type getPostsProps = {
+  params: { username: string; dateFrom: Dayjs; dateTo: Dayjs };
+};
