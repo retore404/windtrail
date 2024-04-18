@@ -1,17 +1,24 @@
-import { Dayjs } from "dayjs";
-import getDayJsObj from "./Dayjs";
-import { Post } from "../_common/_types/type";
-
-// 引数の型定義
-type getPostsProps = {
-  params: { did: string; dateFrom: Dayjs; dateTo: Dayjs };
-};
+import { Post, getPostsProps } from "../_types/type";
+import getDayJs from "./getDaysJs";
 
 async function getPosts({ params }: getPostsProps) {
-  const dayjs = getDayJsObj();
-  const did = params.did;
+  // paramsで指定されたユーザ名から，didを取得
+  const didRes = await fetch(
+    `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=` +
+      params.username,
+    {
+      next: { revalidate: 3600 },
+    },
+  );
+  if (didRes.status != 200) {
+    throw Error("Failed to get did.");
+  }
+  const didData = await didRes.json();
+  const did = didData.did;
   const dateFrom = params.dateFrom;
   const dateTo = params.dateTo;
+
+  const dayjs = getDayJs();
 
   // dateFrom以上dateTo未満となる日付を連想配列化
   //const daysInRange = []
