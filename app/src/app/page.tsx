@@ -1,5 +1,12 @@
 "use client";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
 export default function Home() {
   return (
@@ -28,7 +35,14 @@ export default function Home() {
             id="handlename"
             label="Bluesky handle name"
             variant="standard"
-          ></TextField>
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AlternateEmailIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
           <Button
             variant="outlined"
             onClick={() => {
