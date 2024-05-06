@@ -38,7 +38,7 @@ async function getPosts({ params }: getPostsProps) {
     const postsRes = await fetch(
       `https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=` +
         did +
-        `&filter=posts_and_author_threads&limit=100&cursor=` +
+        `&filter=posts_with_replies&limit=100&cursor=` +
         cursor.utc().format("YYYY-MM-DDTHH:mm:ss.000[Z]"), // UTCに変換したうえで問い合わせ
     );
 
