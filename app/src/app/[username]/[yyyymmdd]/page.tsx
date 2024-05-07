@@ -1,5 +1,5 @@
-import getDayJs from "@/app/_common/_functions/getDaysJs";
-import getPosts from "@/app/_common/_functions/getPosts";
+import getDayJs from "@/app/_common/_libs/dayjs";
+import { getPosts } from "../../_common/_libs/bsky";
 import PageNavigation from "@/app/_component/PageNavigation";
 import Posts from "@/app/_component/Posts";
 import UserInfo from "@/app/_component/UserInfo";
@@ -40,14 +40,7 @@ export default async function Page({ params, searchParams }: Props) {
   const endOfDate = startOfDate.add(1, "day"); // JSTの翌日0時
 
   // 指定された日付のポストを取得
-  const getPostsParams = {
-    params: {
-      username: params.username,
-      dateFrom: startOfDate,
-      dateTo: endOfDate,
-    },
-  };
-  const posts = await getPosts(getPostsParams);
+  const posts = await getPosts(params.username, startOfDate, endOfDate);
 
   return (
     <Box>

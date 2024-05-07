@@ -2,9 +2,9 @@ import { Metadata, ResolvingMetadata } from "next";
 import UserInfo from "../_component/UserInfo";
 import { Box, Divider, StyledEngineProvider } from "@mui/material";
 import Posts from "../_component/Posts";
-import getPosts from "../_common/_functions/getPosts";
 import PageNavigation from "../_component/PageNavigation";
-import getDayJs from "../_common/_functions/getDaysJs";
+import getDayJs from "../_common/_libs/dayjs";
+import { getPosts } from "../_common/_libs/bsky";
 
 // 引数の型定義
 type Props = {
@@ -43,7 +43,7 @@ export default async function Page({ params, searchParams }: Props) {
       dateTo: endOfToday,
     },
   };
-  const posts = await getPosts(getPostsParams);
+  const posts = await getPosts(params.username, startOfToday, endOfToday);
 
   return (
     <Box>

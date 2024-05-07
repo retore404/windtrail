@@ -7,6 +7,7 @@ import {
   StyledEngineProvider,
   Typography,
 } from "@mui/material";
+import { getProfile, resolveHandle } from "../_common/_libs/bsky";
 
 // 引数の型定義
 type Props = {
@@ -15,38 +16,17 @@ type Props = {
 
 export default async function UserInfo({ params }: Props) {
   // didの取得
-  const didRes = await fetch(
-    `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=` +
-      params.username,
-    {
-      next: { revalidate: 3600 },
-    },
-  );
-  if (didRes.status != 200) {
-    return <span>Could not get did.</span>;
-  }
-  const didData = await didRes.json();
-  const did = didData.did;
+  const did = await resolveHandle(params.username);
 
   // ユーザ情報の取得
-  const userInfoRes = await fetch(
-    `https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile?actor=` + did,
-    {
-      next: { revalidate: 3600 },
-    },
-  );
+  const profile = await getProfile(did);
 
-  if (userInfoRes.status != 200) {
-    return <span>Could not get user profile.</span>;
-  }
-  const userData = await userInfoRes.json();
-
-  const displayName = userData.displayName;
-  const avatarImage = userData.avatar;
-  const description = userData.description;
-  const followersCount = userData.followersCount;
-  const followsCount = userData.followsCount;
-  const postsCount = userData.postsCount;
+  const displayName = profile.displayName;
+  const avatarImage = profile.avatar;
+  const description = profile.description;
+  const followersCount = profile.followersCount;
+  const followsCount = profile.followsCount;
+  const postsCount = profile.postsCount;
 
   return (
     <Card>
