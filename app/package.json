@@ -12,6 +12,7 @@
     "format": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
+    "@atproto/api": "^0.12.7",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
