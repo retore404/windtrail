@@ -38,4 +38,3 @@ export interface RecordBlob {
   recordUri: string;
   [k: string]: unknown;
 }
-

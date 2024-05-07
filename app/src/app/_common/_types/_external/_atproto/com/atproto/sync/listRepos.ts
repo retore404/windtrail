@@ -40,4 +40,3 @@ export interface Repo {
   rev: string;
   [k: string]: unknown;
 }
-
