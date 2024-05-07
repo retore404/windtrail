@@ -1,0 +1,32 @@
+/**
+ * GENERATED CODE - DO NOT MODIFY
+ */
+import { Headers, XRPCError } from "@atproto/xrpc";
+import * as AppBskyActorDefs from "../actor/defs";
+
+export interface QueryParams {
+  actor: string;
+}
+
+export type InputSchema = undefined;
+
+export interface OutputSchema {
+  suggestions: AppBskyActorDefs.ProfileView[];
+  [k: string]: unknown;
+}
+
+export interface CallOptions {
+  headers?: Headers;
+}
+
+export interface Response {
+  success: boolean;
+  headers: Headers;
+  data: OutputSchema;
+}
+
+export function toKnownErr(e: any) {
+  if (e instanceof XRPCError) {
+  }
+  return e;
+}

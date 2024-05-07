@@ -5,11 +5,11 @@ import {
   StyledEngineProvider,
   Typography,
 } from "@mui/material";
-import { Post } from "../_common/_types/type";
 import PostCard from "./PostCard";
+import { FeedViewPost } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 
 type PostsProps = {
-  params: { postsDict: Record<string, Array<Post>> };
+  params: { postsDict: Record<string, Array<FeedViewPost>> };
 };
 
 export default function Posts({ params }: PostsProps) {
@@ -37,8 +37,13 @@ export default function Posts({ params }: PostsProps) {
                 }}
               />
             </StyledEngineProvider>
-            {params.postsDict[day].map((post) => {
-              return <PostCard key={post.text} params={{ post: post }} />;
+            {params.postsDict[day].map((feedViewPost) => {
+              return (
+                <PostCard
+                  key={feedViewPost.post.uri}
+                  params={{ feedViewPost: feedViewPost }}
+                />
+              );
             })}
           </Stack>
         );

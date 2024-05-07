@@ -3,7 +3,7 @@ import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import { Dayjs } from "dayjs";
 import Link from "next/link";
-import getDayJs from "../_common/_functions/getDaysJs";
+import getDayJs from "../_common/_libs/dayjs";
 
 // Prop定義
 type PageNavigationProps = {
