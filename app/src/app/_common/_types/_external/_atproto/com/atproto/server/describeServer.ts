@@ -43,9 +43,7 @@ export interface Links {
   [k: string]: unknown;
 }
 
-
 export interface Contact {
   email?: string;
   [k: string]: unknown;
 }
-

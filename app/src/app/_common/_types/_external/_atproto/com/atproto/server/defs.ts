@@ -14,10 +14,8 @@ export interface InviteCode {
   [k: string]: unknown;
 }
 
-
 export interface InviteCodeUse {
   usedBy: string;
   usedAt: string;
   [k: string]: unknown;
 }
-

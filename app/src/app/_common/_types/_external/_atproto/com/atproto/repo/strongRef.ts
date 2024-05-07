@@ -8,4 +8,3 @@ export interface Main {
   cid: string;
   [k: string]: unknown;
 }
-

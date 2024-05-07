@@ -32,14 +32,12 @@ export interface SelfLabels {
   [k: string]: unknown;
 }
 
-
 /** Metadata tag on an atproto record, published by the author within the record. Note that schemas should use #selfLabels, not #selfLabel. */
 export interface SelfLabel {
   /** The short string name of the value or type of this label. */
   val: string;
   [k: string]: unknown;
 }
-
 
 /** Declares a label value and its expected interpertations and behaviors. */
 export interface LabelValueDefinition {
@@ -57,7 +55,6 @@ export interface LabelValueDefinition {
   [k: string]: unknown;
 }
 
-
 /** Strings which describe the label in the UI, localized into a specific language. */
 export interface LabelValueDefinitionStrings {
   /** The code of the language these strings are written in. */
@@ -68,7 +65,6 @@ export interface LabelValueDefinitionStrings {
   description: string;
   [k: string]: unknown;
 }
-
 
 export type LabelValue =
   | "!hide"

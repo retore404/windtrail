@@ -45,4 +45,3 @@ export interface AppPassword {
   createdAt: string;
   [k: string]: unknown;
 }
-

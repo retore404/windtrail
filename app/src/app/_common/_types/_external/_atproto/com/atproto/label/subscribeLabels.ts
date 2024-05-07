@@ -15,4 +15,3 @@ export interface Info {
   message?: string;
   [k: string]: unknown;
 }
-

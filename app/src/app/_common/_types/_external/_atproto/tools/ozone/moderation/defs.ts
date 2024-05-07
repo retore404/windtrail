@@ -38,7 +38,6 @@ export interface ModEventView {
   [k: string]: unknown;
 }
 
-
 export interface ModEventViewDetail {
   id: number;
   event:
@@ -99,7 +98,6 @@ export interface SubjectStatusView {
   [k: string]: unknown;
 }
 
-
 export type SubjectReviewState =
   | "lex:tools.ozone.moderation.defs#reviewOpen"
   | "lex:tools.ozone.moderation.defs#reviewEscalated"
@@ -124,14 +122,12 @@ export interface ModEventTakedown {
   [k: string]: unknown;
 }
 
-
 /** Revert take down action on a subject */
 export interface ModEventReverseTakedown {
   /** Describe reasoning behind the reversal. */
   comment?: string;
   [k: string]: unknown;
 }
-
 
 /** Resolve appeal on a subject */
 export interface ModEventResolveAppeal {
@@ -140,7 +136,6 @@ export interface ModEventResolveAppeal {
   [k: string]: unknown;
 }
 
-
 /** Add a comment to a subject */
 export interface ModEventComment {
   comment: string;
@@ -148,7 +143,6 @@ export interface ModEventComment {
   sticky?: boolean;
   [k: string]: unknown;
 }
-
 
 /** Report a subject */
 export interface ModEventReport {
@@ -159,7 +153,6 @@ export interface ModEventReport {
   [k: string]: unknown;
 }
 
-
 /** Apply/Negate labels on a subject */
 export interface ModEventLabel {
   comment?: string;
@@ -168,18 +161,15 @@ export interface ModEventLabel {
   [k: string]: unknown;
 }
 
-
 export interface ModEventAcknowledge {
   comment?: string;
   [k: string]: unknown;
 }
 
-
 export interface ModEventEscalate {
   comment?: string;
   [k: string]: unknown;
 }
-
 
 /** Mute incoming reports on a subject */
 export interface ModEventMute {
@@ -196,7 +186,6 @@ export interface ModEventUnmute {
   [k: string]: unknown;
 }
 
-
 /** Mute incoming reports from an account */
 export interface ModEventMuteReporter {
   comment?: string;
@@ -205,14 +194,12 @@ export interface ModEventMuteReporter {
   [k: string]: unknown;
 }
 
-
 /** Unmute incoming reports from an account */
 export interface ModEventUnmuteReporter {
   /** Describe reasoning behind the reversal. */
   comment?: string;
   [k: string]: unknown;
 }
-
 
 /** Keep a log of outgoing email to a user */
 export interface ModEventEmail {
@@ -225,13 +212,11 @@ export interface ModEventEmail {
   [k: string]: unknown;
 }
 
-
 /** Divert a record's blobs to a 3rd party service for further scanning/tagging */
 export interface ModEventDivert {
   comment?: string;
   [k: string]: unknown;
 }
-
 
 /** Add/Remove a tag on a subject */
 export interface ModEventTag {
@@ -243,7 +228,6 @@ export interface ModEventTag {
   comment?: string;
   [k: string]: unknown;
 }
-
 
 export interface RepoView {
   did: string;
@@ -257,7 +241,6 @@ export interface RepoView {
   inviteNote?: string;
   [k: string]: unknown;
 }
-
 
 export interface RepoViewDetail {
   did: string;
@@ -275,12 +258,10 @@ export interface RepoViewDetail {
   [k: string]: unknown;
 }
 
-
 export interface RepoViewNotFound {
   did: string;
   [k: string]: unknown;
 }
-
 
 export interface RecordView {
   uri: string;
@@ -292,7 +273,6 @@ export interface RecordView {
   repo: RepoView;
   [k: string]: unknown;
 }
-
 
 export interface RecordViewDetail {
   uri: string;
@@ -306,24 +286,20 @@ export interface RecordViewDetail {
   [k: string]: unknown;
 }
 
-
 export interface RecordViewNotFound {
   uri: string;
   [k: string]: unknown;
 }
-
 
 export interface Moderation {
   subjectStatus?: SubjectStatusView;
   [k: string]: unknown;
 }
 
-
 export interface ModerationDetail {
   subjectStatus?: SubjectStatusView;
   [k: string]: unknown;
 }
-
 
 export interface BlobView {
   cid: string;
@@ -344,11 +320,9 @@ export interface ImageDetails {
   [k: string]: unknown;
 }
 
-
 export interface VideoDetails {
   width: number;
   height: number;
   length: number;
   [k: string]: unknown;
 }
-

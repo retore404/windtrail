@@ -46,7 +46,6 @@ export const getPosts = cache(
       // 指定中のcursorで取得
       const response = await agent.app.bsky.feed.getAuthorFeed({
         actor: did,
-        filter: "posts_with_replies",
         limit: 100,
         cursor: cursor.utc().format("YYYY-MM-DDTHH:mm:ss.000[Z]"),
       });

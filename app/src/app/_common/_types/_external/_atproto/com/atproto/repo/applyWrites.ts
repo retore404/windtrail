@@ -49,7 +49,6 @@ export interface Create {
   [k: string]: unknown;
 }
 
-
 /** Operation which updates an existing record. */
 export interface Update {
   collection: string;
@@ -58,11 +57,9 @@ export interface Update {
   [k: string]: unknown;
 }
 
-
 /** Operation which deletes an existing record. */
 export interface Delete {
   collection: string;
   rkey: string;
   [k: string]: unknown;
 }
-

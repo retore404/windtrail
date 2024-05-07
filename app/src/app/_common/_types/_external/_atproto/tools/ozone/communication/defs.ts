@@ -18,4 +18,3 @@ export interface TemplateView {
   updatedAt: string;
   [k: string]: unknown;
 }
-

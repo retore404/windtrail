@@ -41,4 +41,3 @@ export interface AccountCodes {
   codes: string[];
   [k: string]: unknown;
 }
-

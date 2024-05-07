@@ -50,4 +50,3 @@ export interface Record {
   value: {};
   [k: string]: unknown;
 }
-

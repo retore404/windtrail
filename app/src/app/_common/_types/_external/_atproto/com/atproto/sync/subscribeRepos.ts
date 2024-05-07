@@ -4,8 +4,6 @@
 import { Headers, XRPCError } from "@atproto/xrpc";
 import { ValidationResult, BlobRef } from "@atproto/lexicon";
 
-
-
 /** Represents a change to an account's identity. Could be an updated handle, signing key, or pds hosting endpoint. Serves as a prod to all downstream services to refresh their identity cache. */
 export interface Identity {
   seq: number;
@@ -23,7 +21,6 @@ export interface Handle {
   [k: string]: unknown;
 }
 
-
 /** Represents an account moving from one PDS instance to another. NOTE: not implemented; account migration uses #identity instead */
 export interface Migrate {
   seq: number;
@@ -33,7 +30,6 @@ export interface Migrate {
   [k: string]: unknown;
 }
 
-
 /** Indicates that an account has been deleted. NOTE: may be deprecated in favor of #identity or a future #account event */
 export interface Tombstone {
   seq: number;
@@ -42,11 +38,8 @@ export interface Tombstone {
   [k: string]: unknown;
 }
 
-
 export interface Info {
   name: "OutdatedCursor" | (string & {});
   message?: string;
   [k: string]: unknown;
 }
-
-
