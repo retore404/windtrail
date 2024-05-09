@@ -6,6 +6,7 @@
   --secondary-main: #d2b762;
   --secondary-light: #fbe280;
   --secondary-dark: #957d54;
+  --line-color: rgba(0, 0, 0, 0.12);
 }
 
 body {

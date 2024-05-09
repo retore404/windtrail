@@ -1,7 +1,7 @@
 import getDayJs from "@/app/_common/_libs/dayjs";
 import { getPosts } from "../../_common/_libs/bsky";
 import PageNavigation from "@/app/_component/PageNavigation";
-import Posts from "@/app/_component/Posts";
+import PostsContainer from "@/app/_component/PostsContainer";
 import UserInfo from "@/app/_component/UserInfo";
 import { Box, Divider, StyledEngineProvider } from "@mui/material";
 import { Metadata, ResolvingMetadata } from "next";
@@ -53,7 +53,7 @@ export default async function Page({ params, searchParams }: Props) {
           }}
         />
       </StyledEngineProvider>
-      <Posts params={{ postsDict: posts }} />
+      <PostsContainer params={{ postsDict: posts }} />
       <PageNavigation
         params={{ username: params.username, today: startOfDate, unit: "day" }}
       />
