@@ -6,7 +6,7 @@
     "dev": "run-p dev:next dev:tcm",
     "dev:next": "next dev",
     "dev:tcm": "tcm src --watch",
-    "build": "next build",
+    "build": "rm -rf .next/cache/ && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore './**/*.{js,jsx,ts,tsx,json}'"

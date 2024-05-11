@@ -4,7 +4,7 @@ import { Box, Divider, StyledEngineProvider } from "@mui/material";
 import PostsContainer from "../_component/PostsContainer";
 import PageNavigation from "../_component/PageNavigation";
 import getDayJs from "../_common/_libs/dayjs";
-import { getPosts } from "../_common/_libs/bsky";
+import { getPostsWithoutCache } from "../_common/_libs/bsky";
 
 // 引数の型定義
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 // メタデータを生成
 export async function generateMetadata(
   { params, searchParams }: Props,
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const username = params.username;
 
@@ -35,15 +35,12 @@ export default async function Page({ params, searchParams }: Props) {
   const startOfToday = dayjs().tz().startOf("day");
   const endOfToday = startOfToday.add(1, "day");
 
-  // 本日のポストを取得
-  const getPostsParams = {
-    params: {
-      username: params.username,
-      dateFrom: startOfToday,
-      dateTo: endOfToday,
-    },
-  };
-  const posts = await getPosts(params.username, startOfToday, endOfToday);
+  // 本日のポストを取得（キャッシュは使用しない）
+  const posts = await getPostsWithoutCache(
+    params.username,
+    startOfToday,
+    endOfToday
+  );
 
   return (
     <Box>
