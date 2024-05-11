@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  Divider,
-  Stack,
-  Step,
-  Typography,
-} from "@mui/material";
+import { Avatar, Card, Divider, Stack, Step, Typography } from "@mui/material";
 import CachedIcon from "@mui/icons-material/Cached";
 import getDayJs from "../_common/_libs/dayjs";
 import {
@@ -15,13 +7,12 @@ import {
 } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 
 type PostContentProps = {
-  params: { postView: PostView };
+  params: { post: PostView; reason?: ReasonRepost };
 };
 
 export default function PostContent({ params }: PostContentProps) {
   const dayjs = getDayJs();
-  // reasonの型がReasonRepostであることを保証
-  const reason = params.postView.reason as ReasonRepost;
+
   return (
     <Step>
       <Card
@@ -34,28 +25,30 @@ export default function PostContent({ params }: PostContentProps) {
         }}
       >
         <Stack direction="row" spacing={1} alignItems="center">
-          <Avatar alt="avatar" src={params.postView.author.avatar} />
+          <Avatar alt="avatar" src={params.post.author.avatar} />
           <Typography variant="body2">
-            {params.postView.author.displayName}
+            {params.post.author.displayName}
           </Typography>
           <Typography variant="body2">
-            (@{params.postView.author.handle})
+            (@{params.post.author.handle})
           </Typography>
         </Stack>
-        <Typography variant="h6">{params.postView.record.text}</Typography>
+        <Typography variant="h6">{params.post.record.text}</Typography>
         <Typography variant="body2">
           posted at.{" "}
-          {dayjs(params.postView.indexedAt).tz().format("YYYY-MM-DD HH:mm:ss")}
+          {dayjs(params.post.indexedAt).tz().format("YYYY-MM-DD HH:mm:ss")}
         </Typography>
-        {reason != undefined &&
-        reason["$type"] === "app.bsky.feed.defs#reasonRepost" ? (
+        {params.reason != undefined &&
+        params.reason["$type"] === "app.bsky.feed.defs#reasonRepost" ? (
           <>
             <Divider sx={{ marginTop: "8px", marginBottom: "8px" }} />
             <Stack direction="row" spacing={1} alignItems="center">
               <CachedIcon />
               <Typography variant="body2">
                 reposted at{" "}
-                {dayjs(reason.indexedAt).tz().format("YYYY-MM-DD HH:mm:ss")}
+                {dayjs(params.reason.indexedAt)
+                  .tz()
+                  .format("YYYY-MM-DD HH:mm:ss")}
               </Typography>
             </Stack>
           </>
