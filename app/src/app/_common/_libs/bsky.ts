@@ -22,8 +22,6 @@ export const getProfile = cache(async (actor: string) => {
   return data;
 });
 
-export const revalidate = 0;
-
 // キャッシュ無し版
 export const getPostsWithoutCache = async (
   handle: string,
