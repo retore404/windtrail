@@ -22,9 +22,14 @@ export const getProfile = cache(async (actor: string) => {
   return data;
 });
 
+export const revalidate = 0;
 
 // キャッシュ無し版
-export const getPostsWithoutCache = async(handle: string, dateFrom: Dayjs, dateTo: Dayjs) => {
+export const getPostsWithoutCache = async (
+  handle: string,
+  dateFrom: Dayjs,
+  dateTo: Dayjs
+) => {
   // paramsで指定されたユーザ名から，didを取得
   const did = await resolveHandle(handle);
 
@@ -83,7 +88,7 @@ export const getPostsWithoutCache = async(handle: string, dateFrom: Dayjs, dateT
   }
 
   return postsDictInRange;
-}
+};
 
 export const getPosts = cache(
   async (handle: string, dateFrom: Dayjs, dateTo: Dayjs) => {
