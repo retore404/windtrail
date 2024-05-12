@@ -15,7 +15,7 @@ export async function resolveHandle(handle: string) {
     `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=` +
       handle,
     {
-      next: { revalidate: 0 },
+      next: { revalidate: 3600 },
     }
   );
 

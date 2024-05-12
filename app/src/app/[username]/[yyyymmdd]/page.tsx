@@ -15,7 +15,7 @@ type Props = {
 // メタデータを生成
 export async function generateMetadata(
   { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const username = params.username;
 
@@ -55,12 +55,12 @@ export default async function Page({ params, searchParams }: Props) {
       ? await getPostsWithoutCache(
           params.username,
           startOfDesignatedDate,
-          endOfDesignatedDate
+          endOfDesignatedDate,
         )
       : await getPosts(
           params.username,
           startOfDesignatedDate,
-          endOfDesignatedDate
+          endOfDesignatedDate,
         );
 
   return (

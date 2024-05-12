@@ -5,7 +5,7 @@ import {
   StyledEngineProvider,
   Typography,
 } from "@mui/material";
-import PostCard from "./PostCard";
+import Post from "./Post";
 import { FeedViewPost } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 import React from "react";
 
@@ -38,20 +38,20 @@ export default function PostsContainer({ params }: PostsContainerProps) {
                 }}
               />
             </StyledEngineProvider>
-            {params.postsDict[day].map((feedViewPost) => {
-              return (
-                <React.Fragment key={feedViewPost.post.uri}>
-                  <PostCard params={{ feedViewPost: feedViewPost }} />
-                  <Box
-                    sx={{
-                      marginTop: "16px",
-                      marginBottom: "16px",
-                      border: "0.1px solid var(--line-color)",
-                    }}
-                  />
-                </React.Fragment>
-              );
-            })}
+            <Stack
+              direction="column"
+              divider={<Divider orientation="horizontal" flexItem />}
+              spacing={2}
+              sx={{ backgroundColor: "white", padding: "8px" }}
+            >
+              {params.postsDict[day].map((feedViewPost) => {
+                return (
+                  <React.Fragment key={feedViewPost.post.uri}>
+                    <Post params={{ feedViewPost: feedViewPost }} />
+                  </React.Fragment>
+                );
+              })}
+            </Stack>
           </Stack>
         );
       })}
