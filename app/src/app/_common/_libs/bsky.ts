@@ -9,20 +9,24 @@ const agent = new BskyAgent({
   service: "https://public.api.bsky.app",
 });
 
-export const resolveHandle = cache(async (handle: string) => {
-  const { data } = await agent.com.atproto.identity.resolveHandle({
-    handle: handle,
-  });
-  const { did } = data;
+// ハンドルからDIDを取得
+export async function resolveHandle(handle: string) {
+  const didRes = await fetch(
+    `https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=` +
+      handle,
+    {
+      next: { revalidate: 0 },
+    }
+  );
+
+  const did = (await didRes.json()).did as string;
   return did;
-});
+}
 
 export const getProfile = cache(async (actor: string) => {
   const { data } = await agent.app.bsky.actor.getProfile({ actor: actor });
   return data;
 });
-
-export const revalidate = 0;
 
 // キャッシュ無し版
 export const getPostsWithoutCache = async (
