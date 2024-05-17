@@ -6,6 +6,8 @@ import {
   ReasonRepost,
 } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 import getDayJs from "../_common/_libs/dayjs";
+import { View } from "../_common/_types/_external/_atproto/app/bsky/embed/images";
+import Image from "next/image";
 
 type PostProps = {
   params: { feedViewPost: FeedViewPost };
@@ -20,6 +22,10 @@ export default function Post({ params }: PostProps) {
 
   // ポスト（メイン）
   const post = params.feedViewPost.post;
+
+  // 埋め込みコンテンツ
+  const embed = post.embed as View;
+  const images = embed?.images;
 
   // reply先を取得
   const replyParent = params.feedViewPost.reply?.parent as PostView;
@@ -117,6 +123,31 @@ export default function Post({ params }: PostProps) {
               </Typography>
             </Stack>
             <Typography variant="body1">{post.record.text}</Typography>
+            {/* 埋め込み画像 */}
+            {images != undefined && (
+              <Box display={`flex`} sx={{ gap: "8px" }}>
+                {images.map((image) => {
+                  return (
+                    <Box key={image.thumb}>
+                      <a href={image.fullsize}>
+                        <Image
+                          src={image.thumb}
+                          alt={image.alt}
+                          width={image.aspectRatio?.width}
+                          height={image.aspectRatio?.height}
+                          loading="lazy"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </a>
+                    </Box>
+                  );
+                })}
+              </Box>
+            )}
             <Typography variant="body2">
               posted at{" "}
               {dayjs(post.indexedAt).tz().format("YYYY-MM-DD HH:mm:ss")}
