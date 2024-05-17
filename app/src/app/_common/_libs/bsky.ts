@@ -16,7 +16,7 @@ export async function resolveHandle(handle: string) {
       handle,
     {
       next: { revalidate: 3600 },
-    }
+    },
   );
 
   const did = (await didRes.json()).did as string;
@@ -32,7 +32,7 @@ export const getProfile = cache(async (actor: string) => {
 export const getPostsWithoutCache = async (
   handle: string,
   dateFrom: Dayjs,
-  dateTo: Dayjs
+  dateTo: Dayjs,
 ) => {
   // paramsで指定されたユーザ名から，didを取得
   const did = await resolveHandle(handle);
@@ -154,5 +154,5 @@ export const getPosts = cache(
     }
 
     return postsDictInRange;
-  }
+  },
 );
