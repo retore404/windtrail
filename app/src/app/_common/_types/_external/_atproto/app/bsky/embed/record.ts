@@ -11,6 +11,7 @@ import * as ComAtprotoLabelDefs from "../../../com/atproto/label/defs";
 import * as AppBskyEmbedImages from "./images";
 import * as AppBskyEmbedExternal from "./external";
 import * as AppBskyEmbedRecordWithMedia from "./recordWithMedia";
+import { Record } from "../feed/post";
 
 export interface Main {
   record: ComAtprotoRepoStrongRef.Main;
@@ -34,7 +35,7 @@ export interface ViewRecord {
   cid: string;
   author: AppBskyActorDefs.ProfileViewBasic;
   /** The record data itself. */
-  value: {};
+  value: Record;
   labels?: ComAtprotoLabelDefs.Label[];
   replyCount?: number;
   repostCount?: number;
