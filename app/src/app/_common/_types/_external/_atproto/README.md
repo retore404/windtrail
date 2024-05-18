@@ -20,7 +20,10 @@ https://github.com/bluesky-social/atproto/tree/58f719cc1c8d0ebd5ad7cf11221372b67
 ---
 
 改変箇所
+
 - functionを削除(app/bsky配下)
 - 未使用のimportを削除
-- /app/src/app/_common/_types/_external/_atproto/app/bsky/feed/defs.ts
+- /app/src/app/\_common/\_types/\_external/\_atproto/app/bsky/feed/defs.ts
   - PostViewのrecordが{}と定義されていたところに実態に合わせて型を追加
+- /app/src/app/\_common/\_types/\_external/\_atproto/app/bsky/embed/record.ts
+  - ViewRecordのrecordが{}と定義されていたところに実態に合わせて型を追加
