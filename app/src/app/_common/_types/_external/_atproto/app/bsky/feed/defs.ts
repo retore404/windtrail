@@ -10,12 +10,13 @@ import * as AppBskyEmbedRecordWithMedia from "../embed/recordWithMedia";
 import * as ComAtprotoLabelDefs from "../../../com/atproto/label/defs";
 import * as AppBskyRichtextFacet from "../richtext/facet";
 import * as AppBskyGraphDefs from "../graph/defs";
+import { Record } from "./post";
 
 export interface PostView {
   uri: string;
   cid: string;
   author: AppBskyActorDefs.ProfileViewBasic;
-  record: { $type: string; createdAt: string; langs: string[]; text: string };
+  record: Record;
   embed?:
     | AppBskyEmbedImages.View
     | AppBskyEmbedExternal.View
