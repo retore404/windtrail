@@ -5,9 +5,9 @@ import {
   StyledEngineProvider,
   Typography,
 } from "@mui/material";
-import Post from "./Post";
 import { FeedViewPost } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 import React from "react";
+import FeedPost from "./FeedPost";
 
 type PostsContainerProps = {
   params: { postsDict: Record<string, Array<FeedViewPost>> };
@@ -47,7 +47,7 @@ export default function PostsContainer({ params }: PostsContainerProps) {
               {params.postsDict[day].map((feedViewPost) => {
                 return (
                   <React.Fragment key={feedViewPost.post.uri}>
-                    <Post params={{ feedViewPost: feedViewPost }} />
+                    <FeedPost params={{ feedViewPost: feedViewPost }} />
                   </React.Fragment>
                 );
               })}
