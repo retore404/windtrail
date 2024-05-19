@@ -1,136 +1,46 @@
-import { Avatar, Box, Grid, Stack, Typography } from "@mui/material";
-import CachedIcon from "@mui/icons-material/Cached";
-import {
-  FeedViewPost,
-  PostView,
-  ReasonRepost,
-} from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
+import { Box, Grid, Stack, Typography } from "@mui/material";
+import { PostView } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 import getDayJs from "../_common/_libs/dayjs";
-import EmbededContents from "./EmbededContents";
+import AvatarIcon from "./AvatarIcon";
+import HandleName from "./HandleName";
+import EmbededContent from "./EmbededContent";
 
 type PostProps = {
-  params: { feedViewPost: FeedViewPost };
+  params: { post: PostView; stepper?: boolean };
 };
 
 export default function Post({ params }: PostProps) {
   const dayjs = getDayJs();
 
-  if (params.feedViewPost == undefined) {
-    return null;
-  }
-
-  // ポスト（メイン）
-  const post = params.feedViewPost.post;
-
-  // 埋め込みコンテンツ
-  const embed = post.embed;
-
-  // reply先を取得
-  const replyParent = params.feedViewPost.reply?.parent as PostView;
-
-  // reasonを取得
-  const reason = params.feedViewPost.reason as ReasonRepost;
-
   return (
     <>
-      <Grid container>
-        {/* リプライ先がある場合 */}
-        {replyParent != undefined && (
-          <>
-            <Grid xs={12} container>
-              <Grid xs={2.5} sm={1} md={0.77} lg={0.75} item container>
-                <Grid xs={12} item sx={{ marginTop: "4px" }}>
-                  <Stack direction="row" justifyContent="center">
-                    <Avatar alt="avatar" src={replyParent.author.avatar} />
-                  </Stack>
-                </Grid>
-                <Grid xs={12} item>
-                  <Stack
-                    direction="row"
-                    justifyContent="center"
-                    sx={{ height: "100%" }}
-                  >
-                    <Box
-                      sx={{ borderLeft: "1px solid var(--line-color)" }}
-                    ></Box>
-                  </Stack>
-                </Grid>
-              </Grid>
-              <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                    {replyParent.author.displayName}
-                    {`(@`}
-                    {replyParent.author.handle}
-                    {`)`}
-                  </Typography>
-                </Stack>
-                <Typography variant="body1">
-                  {replyParent.record.text}
-                </Typography>
-                <Typography variant="body2">
-                  posted at{" "}
-                  {dayjs(replyParent.indexedAt)
-                    .tz()
-                    .format("YYYY-MM-DD HH:mm:ss")}
-                </Typography>
-                <Box sx={{ height: "8px" }}></Box>
-              </Grid>
-            </Grid>
-            <Grid xs={12} sx={{ height: "8px" }}></Grid>
-          </>
-        )}
-        {/* ポスト部分 */}
-        <Grid xs={12} container>
-          {/* リポストの場合はその旨の表記 */}
-          {reason != undefined &&
-            reason["$type"] === "app.bsky.feed.defs#reasonRepost" && (
-              <>
-                <Grid xs={12} item>
-                  <Stack
-                    direction="row"
-                    spacing={1}
-                    alignItems="center"
-                    sx={{ marginLeft: "16px" }}
-                  >
-                    <CachedIcon />
-                    <Typography variant="body2">
-                      reposted at{" "}
-                      {dayjs(reason.indexedAt)
-                        .tz()
-                        .format("YYYY-MM-DD HH:mm:ss")}
-                    </Typography>
-                  </Stack>
-                  <Box sx={{ height: "8px" }} />
-                </Grid>
-              </>
-            )}
-          {/* ポストのメイン部分（リポストの場合はリポスト対象） */}
-          <Grid xs={2.5} sm={1} md={0.77} lg={0.75} item container>
-            <Grid xs={12} item>
-              <Stack direction="row" justifyContent="center">
-                <Avatar alt="avatar" src={post.author.avatar} />
-              </Stack>
-            </Grid>
-          </Grid>
-          <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                {post.author.displayName} (@
-                {post.author.handle})
-              </Typography>
+      <Grid xs={2.5} sm={1} md={0.77} lg={0.75} item container>
+        <AvatarIcon params={{ author: params.post.author }} />
+        {params.stepper && (
+          <Grid xs={12} item>
+            <Stack
+              direction="row"
+              justifyContent="center"
+              sx={{ height: "100%" }}
+            >
+              <Box sx={{ borderLeft: "1px solid var(--line-color)" }}></Box>
             </Stack>
-            <Typography variant="body1">{post.record.text}</Typography>
-            {/* 埋め込みコンテンツ */}
-            {embed != undefined && (
-              <EmbededContents params={{ embed: embed }} />
-            )}
-            <Typography variant="body2">
-              posted at{" "}
-              {dayjs(post.indexedAt).tz().format("YYYY-MM-DD HH:mm:ss")}
-            </Typography>
           </Grid>
-        </Grid>
+        )}
+      </Grid>
+      <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
+        <HandleName params={{ author: params.post.author }} />
+        {/* 本文 */}
+        <Typography variant="body1">{params.post.record.text}</Typography>
+        {/* 埋め込み */}
+        {params.post.embed != undefined && (
+          <EmbededContent params={{ embed: params.post.embed }} />
+        )}
+        {/* 投稿日 */}
+        <Typography variant="body2">
+          posted at{" "}
+          {dayjs(params.post.indexedAt).tz().format("YYYY-MM-DD HH:mm:ss")}
+        </Typography>
       </Grid>
     </>
   );
