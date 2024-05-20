@@ -55,7 +55,7 @@ export default async function UserInfo({ params }: Props) {
           />
         </StyledEngineProvider>
         <Stack>
-          <Typography>{description}</Typography>
+          <Typography sx={{ whiteSpace: "pre-wrap" }}>{description}</Typography>
         </Stack>
       </CardContent>
     </Card>

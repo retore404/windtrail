@@ -33,7 +33,9 @@ export default function EmbededViewRecordParts({
         <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
           <HandleName params={{ author: record.author }} />
           {/* 本文 */}
-          <Typography variant="body1">{record.value.text}</Typography>
+          <Typography variant="body1" sx={{ whiteSpace: "pre-wrap" }}>
+            {record.value.text}
+          </Typography>
           {/* 埋め込み */}
           {record.embeds != undefined && (
             <Box>

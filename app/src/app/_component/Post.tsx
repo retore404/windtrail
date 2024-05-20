@@ -31,7 +31,9 @@ export default function Post({ params }: PostProps) {
       <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
         <HandleName params={{ author: params.post.author }} />
         {/* 本文 */}
-        <Typography variant="body1">{params.post.record.text}</Typography>
+        <Typography variant="body1" sx={{ whiteSpace: "pre-wrap" }}>
+          {params.post.record.text}
+        </Typography>
         {/* 埋め込み */}
         {params.post.embed != undefined && (
           <EmbededContent params={{ embed: params.post.embed }} />
