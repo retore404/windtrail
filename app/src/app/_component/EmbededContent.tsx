@@ -6,6 +6,7 @@ import UnderConstruction from "./UnderConstruction";
 import EmbededImages from "./EmbededImages";
 import EmbededRecord from "./EmbededRecord";
 import EmbededRecordWithMedia from "./EmbededRecordWithMedia";
+import EmbededExternal from "./EmbededExternal";
 
 type EmbededContentProps = {
   params: {
@@ -40,6 +41,14 @@ export default function EmbededContent({ params }: EmbededContentProps) {
     return (
       <>
         <EmbededRecordWithMedia params={{ embed: embed }} />
+      </>
+    );
+  } else if (params.embed.$type == "app.bsky.embed.external#view") {
+    // 外部サイトの場合
+    const embed = params.embed as AppBskyEmbedExternal.View;
+    return (
+      <>
+        <EmbededExternal params={{ embed: embed }} />
       </>
     );
   }
