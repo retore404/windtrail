@@ -15,9 +15,9 @@ export default function Post({ params }: PostProps) {
   return (
     <>
       <Grid xs={2.5} sm={1} md={0.77} lg={0.75} item container>
-        <AvatarIcon params={{ author: params.post.author }} />
-        {params.stepper && (
-          <Grid xs={12} item>
+        <Grid xs={12} item>
+          <AvatarIcon params={{ author: params.post.author }} />
+          {params.stepper && (
             <Stack
               direction="row"
               justifyContent="center"
@@ -25,8 +25,8 @@ export default function Post({ params }: PostProps) {
             >
               <Box sx={{ borderLeft: "1px solid var(--line-color)" }}></Box>
             </Stack>
-          </Grid>
-        )}
+          )}
+        </Grid>
       </Grid>
       <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
         <HandleName params={{ author: params.post.author }} />
