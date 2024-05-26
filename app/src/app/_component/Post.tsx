@@ -4,6 +4,7 @@ import getDayJs from "../_common/_libs/dayjs";
 import AvatarIcon from "./AvatarIcon";
 import HandleName from "./HandleName";
 import EmbededContent from "./EmbededContent";
+import { renderTwemoji } from "../_common/_libs/twemojiUtil";
 
 type PostProps = {
   params: { post: PostView; stepper?: boolean };
@@ -31,9 +32,14 @@ export default function Post({ params }: PostProps) {
       <Grid xs={9.5} sm={11} md={11.23} lg={11.25} item>
         <HandleName params={{ author: params.post.author }} />
         {/* 本文 */}
-        <Typography variant="body1" sx={{ whiteSpace: "pre-wrap" }}>
-          {params.post.record.text}
-        </Typography>
+        <Stack>
+          <p
+            style={{ whiteSpace: "pre-wrap", margin: 0 }}
+            dangerouslySetInnerHTML={{
+              __html: renderTwemoji(params.post.record.text),
+            }}
+          ></p>
+        </Stack>
         {/* 埋め込み */}
         {params.post.embed != undefined && (
           <EmbededContent params={{ embed: params.post.embed }} />

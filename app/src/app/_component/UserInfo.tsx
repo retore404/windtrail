@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { getProfile, resolveHandle } from "../_common/_libs/bsky";
+import { renderTwemoji } from "../_common/_libs/twemojiUtil";
 
 // 引数の型定義
 type Props = {
@@ -20,10 +21,11 @@ export default async function UserInfo({ params }: Props) {
 
   // ユーザ情報の取得
   const profile = await getProfile(did);
-
   const displayName = profile.displayName;
   const avatarImage = profile.avatar;
-  const description = profile.description;
+  const description = profile.description + "";
+  const parsedDescription = renderTwemoji(description);
+
   const followersCount = profile.followersCount;
   const followsCount = profile.followsCount;
   const postsCount = profile.postsCount;
@@ -55,7 +57,10 @@ export default async function UserInfo({ params }: Props) {
           />
         </StyledEngineProvider>
         <Stack>
-          <Typography sx={{ whiteSpace: "pre-wrap" }}>{description}</Typography>
+          <p
+            style={{ whiteSpace: "pre-wrap", margin: 0 }}
+            dangerouslySetInnerHTML={{ __html: parsedDescription }}
+          ></p>
         </Stack>
       </CardContent>
     </Card>
