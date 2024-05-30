@@ -38,7 +38,7 @@ export default function FeedPost({ params }: FeedPostProps) {
               <RepostLabel params={{ repostedDate: dayjs(reason.indexedAt) }} />
             )}
           {/* ポスト部分 */}
-          <Post params={{ post: params.feedViewPost.post }} />
+          <Post params={{ post: post }} />
         </Grid>
       </Grid>
     </>
