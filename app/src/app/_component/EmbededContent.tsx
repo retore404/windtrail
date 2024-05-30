@@ -7,6 +7,7 @@ import EmbededImages from "./EmbededImages";
 import EmbededRecord from "./EmbededRecord";
 import EmbededRecordWithMedia from "./EmbededRecordWithMedia";
 import EmbededExternal from "./EmbededExternal";
+import EmbededRecordNotFound from "./EmbededRecordNotFound";
 
 type EmbededContentProps = {
   params: {
@@ -30,6 +31,12 @@ export default function EmbededContent({ params }: EmbededContentProps) {
   } else if (params.embed.$type == "app.bsky.embed.record#view") {
     // 引用ポストの場合
     const embed = params.embed as AppBskyEmbedRecord.View;
+
+    // 引用したポストが削除されている場合
+    if (embed.record.notFound == true) {
+      return <EmbededRecordNotFound />;
+    }
+
     return (
       <>
         <EmbededRecord params={{ embed: embed }} />
