@@ -138,14 +138,18 @@ export const getPosts = cache(
         // 対象となる期間の投稿か判定
         if (postDate.isSameOrAfter(dateFrom)) {
           // 本投稿の追加前の同日の投稿を取得し，処理中のポストを追加したうえで置き換え
-          const currentPostArray = postsDictInRange[postYYYYMMDD];
+          // 追加前の同日の投稿が取得てきていない場合はundefinedになるので，pushのエラーを避けるべく[]を割り当て
+          const currentPostArray =
+            postsDictInRange[postYYYYMMDD] !== undefined
+              ? postsDictInRange[postYYYYMMDD]
+              : [];
           currentPostArray.push(feedViewPost as FeedViewPost);
           postsDictInRange[postYYYYMMDD] = currentPostArray;
         }
       });
 
       // 1件しか取れていない場合は最後まで取得できているのでbreak
-      if (response.data.feed.length == 1) {
+      if (response.data.feed.length <= 1) {
         break;
       }
 
