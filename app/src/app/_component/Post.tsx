@@ -1,9 +1,4 @@
-import {
-  Box,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { PostView } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 import getDayJs from "../_common/_libs/dayjs";
 import AvatarIcon from "./AvatarIcon";
