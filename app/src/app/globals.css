@@ -1,20 +1,3 @@
-:root {
-  --font-color: #4d5156;
-  --primary-main: #546c95;
-  --primary-light: #e6eaef;
-  --primary-dark: #203965;
-  --secondary-main: #d2b762;
-  --secondary-light: #fbe280;
-  --secondary-dark: #957d54;
-  --line-color: rgba(0, 0, 0, 0.12);
-}
-
-body {
-  margin: 0;
-  color: var(--font-color);
-  background-color: var(--primary-light);
-}
-
 #main {
   display: grid;
   padding: 8px;
