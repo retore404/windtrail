@@ -5,6 +5,7 @@ import AvatarIcon from "./AvatarIcon";
 import HandleName from "./HandleName";
 import EmbededContent from "./EmbededContent";
 import { renderTwemoji } from "../_common/_libs/twemojiUtil";
+import themeDefinition from "../_themes/themeDefinition";
 
 type PostProps = {
   params: { post: PostView; stepper?: boolean };
@@ -24,7 +25,9 @@ export default function Post({ params }: PostProps) {
               justifyContent="center"
               sx={{ height: "100%" }}
             >
-              <Box sx={{ borderLeft: "1px solid var(--line-color)" }}></Box>
+              <Box
+                sx={{ borderLeft: "1px solid " + themeDefinition.palette.line }}
+              ></Box>
             </Stack>
           )}
         </Grid>
@@ -33,12 +36,14 @@ export default function Post({ params }: PostProps) {
         <HandleName params={{ author: params.post.author }} />
         {/* 本文 */}
         <Stack>
-          <p
-            style={{ whiteSpace: "pre-wrap", margin: 0 }}
-            dangerouslySetInnerHTML={{
-              __html: renderTwemoji(params.post.record.text),
-            }}
-          ></p>
+          <Typography>
+            <span
+              style={{ whiteSpace: "pre-wrap", margin: 0 }}
+              dangerouslySetInnerHTML={{
+                __html: renderTwemoji(params.post.record.text),
+              }}
+            ></span>
+          </Typography>
         </Stack>
         {/* 埋め込み */}
         {params.post.embed != undefined && (

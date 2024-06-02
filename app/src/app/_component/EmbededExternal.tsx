@@ -27,7 +27,7 @@ export default function EmbededExternal({ params }: EmbededExternalProps) {
         target="_blank"
         style={{
           textDecoration: "none",
-          color: `${themeDefinition.palette.font.light}`,
+          color: `${themeDefinition.palette.text.light}`,
         }}
       >
         {external.thumb != undefined && (
@@ -52,12 +52,12 @@ export default function EmbededExternal({ params }: EmbededExternalProps) {
           <Typography
             variant="h6"
             sx={{
-              color: `${themeDefinition.palette.font.main}`,
+              color: `${themeDefinition.palette.text.primary}`,
             }}
           >
             {external.title}
           </Typography>
-          <Typography sx={{ color: `${themeDefinition.palette.font.main}` }}>
+          <Typography sx={{ color: `${themeDefinition.palette.text.primary}` }}>
             {abbrDescription}
           </Typography>
         </Box>

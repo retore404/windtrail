@@ -1,12 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import themeDefinition from "../_themes/themeDefinition";
 
 export default function EmbededRecordNotFound() {
   return (
     <>
       <Box
         sx={{
-          border: "1px solid var(--line-color)",
+          border: "1px solid " + themeDefinition.palette.line,
           borderRadius: "8px",
           margin: "8px",
           padding: "8px",

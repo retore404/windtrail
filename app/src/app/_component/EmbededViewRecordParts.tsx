@@ -4,6 +4,7 @@ import AvatarIcon from "./AvatarIcon";
 import HandleName from "./HandleName";
 import getDayJs from "../_common/_libs/dayjs";
 import EmbededContent from "./EmbededContent";
+import themeDefinition from "../_themes/themeDefinition";
 
 type EmbededViewRecordPartsProps = {
   params: {
@@ -20,7 +21,7 @@ export default function EmbededViewRecordParts({
   return (
     <Box
       sx={{
-        border: "1px solid var(--line-color)",
+        border: "1px solid " + themeDefinition.palette.line,
         borderRadius: "8px",
         margin: "8px",
         padding: "8px",

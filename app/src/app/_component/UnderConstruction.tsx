@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import themeDefinition from "../_themes/themeDefinition";
 
 type UnderConstructionProps = {
   params: { type: string };
@@ -8,7 +9,10 @@ type UnderConstructionProps = {
 export default function UnderConstruction({ params }: UnderConstructionProps) {
   return (
     <Box
-      sx={{ backgroundColor: "var(--secondary-light)", padding: "8px" }}
+      sx={{
+        backgroundColor: themeDefinition.palette.secondary.light,
+        padding: "8px",
+      }}
       display={`flex`}
       flexDirection={`row`}
     >
