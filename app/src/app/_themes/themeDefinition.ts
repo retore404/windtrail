@@ -10,11 +10,11 @@ export const themeDefinition = {
       light: "#fbe280",
       dark: "#957d54",
     },
-    font: {
-      main: "#4d5156",
+    line: "rgba(0, 0, 0, 0.12)",
+    text: {
+      primary: "#4d5156",
       light: "#AEB2B6",
     },
-    line: "rgba(0, 0, 0, 0.12)",
   },
 };
 
