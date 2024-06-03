@@ -27,7 +27,7 @@ export default function EmbededViewRecordParts({
         padding: "8px",
       }}
     >
-      <Grid xs={12} container>
+      <Grid xs={12} container item>
         <Grid xs={2.5} sm={1} md={0.77} lg={0.75} item container>
           <AvatarIcon params={{ author: record.author }} />
         </Grid>

@@ -31,7 +31,7 @@ export default function FeedPost({ params }: FeedPostProps) {
         {replyParent != undefined && (
           <ReplyParent params={{ parent: replyParent }} />
         )}
-        <Grid xs={12} container>
+        <Grid xs={12} item container>
           {/* リポストの場合はその旨のラベルを表示 */}
           {reason != undefined &&
             reason["$type"] === "app.bsky.feed.defs#reasonRepost" && (

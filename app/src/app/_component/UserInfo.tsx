@@ -4,7 +4,6 @@ import {
   CardContent,
   Divider,
   Stack,
-  StyledEngineProvider,
   Typography,
 } from "@mui/material";
 import { getProfile, resolveHandle } from "../_common/_libs/bsky";
@@ -48,14 +47,12 @@ export default async function UserInfo({ params }: Props) {
             {followersCount}
           </Typography>
         </Stack>
-        <StyledEngineProvider injectFirst>
-          <Divider
-            sx={{
-              marginTop: "0.5em",
-              marginBottom: "0.5em",
-            }}
-          />
-        </StyledEngineProvider>
+        <Divider
+          sx={{
+            marginTop: "0.5em",
+            marginBottom: "0.5em",
+          }}
+        />
         <Stack>
           <p
             style={{ whiteSpace: "pre-wrap", margin: 0 }}

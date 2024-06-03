@@ -25,7 +25,7 @@ export default function ReplyParent({ params }: ReplyParentProps) {
     return (
       <>
         <Post params={{ post: replyParentPost, stepper: true }} />
-        <Grid xs={12} sx={{ height: "8px" }}></Grid>
+        <Grid xs={12} item sx={{ height: "8px" }}></Grid>
       </>
     );
   }
