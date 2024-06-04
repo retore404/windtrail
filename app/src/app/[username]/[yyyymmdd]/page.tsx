@@ -3,8 +3,9 @@ import { getPosts, getPostsWithoutCache } from "../../_common/_libs/bsky";
 import PageNavigation from "@/app/_component/PageNavigation";
 import PostsContainer from "@/app/_component/PostsContainer";
 import UserInfo from "@/app/_component/UserInfo";
-import { Box, Divider, StyledEngineProvider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import { Metadata, ResolvingMetadata } from "next";
+import { Suspense } from "react";
 
 // 引数の型定義
 type Props = {
@@ -65,23 +66,23 @@ export default async function Page({ params, searchParams }: Props) {
 
   return (
     <Box>
-      <UserInfo params={{ username: params.username }}></UserInfo>
-      <StyledEngineProvider injectFirst>
+      <Suspense fallback={<div>loading...</div>}>
+        <UserInfo params={{ username: params.username }}></UserInfo>
         <Divider
           sx={{
             marginTop: "0.5em",
             marginBottom: "0.5em",
           }}
         />
-      </StyledEngineProvider>
-      <PostsContainer params={{ postsDict: posts }} />
-      <PageNavigation
-        params={{
-          username: params.username,
-          today: startOfDesignatedDate,
-          unit: "day",
-        }}
-      />
+        <PostsContainer params={{ postsDict: posts }} />
+        <PageNavigation
+          params={{
+            username: params.username,
+            today: startOfDesignatedDate,
+            unit: "day",
+          }}
+        />
+      </Suspense>
     </Box>
   );
 }
