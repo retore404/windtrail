@@ -1,10 +1,4 @@
-import {
-  Box,
-  Divider,
-  Stack,
-  StyledEngineProvider,
-  Typography,
-} from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import { FeedViewPost } from "../_common/_types/_external/_atproto/app/bsky/feed/defs";
 import React from "react";
 import FeedPost from "./FeedPost";
@@ -30,14 +24,12 @@ export default function PostsContainer({ params }: PostsContainerProps) {
               </Typography>
               <Typography>{params.postsDict[day].length} posts.</Typography>
             </Stack>
-            <StyledEngineProvider injectFirst>
-              <Divider
-                sx={{
-                  marginTop: "0.5em",
-                  marginBottom: "0.5em",
-                }}
-              />
-            </StyledEngineProvider>
+            <Divider
+              sx={{
+                marginTop: "0.5em",
+                marginBottom: "0.5em",
+              }}
+            />
             <Stack
               direction="column"
               divider={<Divider orientation="horizontal" flexItem />}
