@@ -15,7 +15,7 @@ export default function Lightbox({ params }: LightboxProps) {
     <Zoom>
       <Image
         src={image.fullsize}
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        style={{ width: "250px", height: "250px", objectFit: "cover" }}
         alt={image.alt}
         width={image.aspectRatio?.width}
         height={image.aspectRatio?.height}
