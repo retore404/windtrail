@@ -8,10 +8,10 @@ type EmbededImagesProps = {
 
 export default function EmbededImages({ params }: EmbededImagesProps) {
   return (
-    <Box display={`flex`} sx={{ gap: "8px" }}>
+    <Box display={`flex`} sx={{ gap: "8px", flexWrap: "wrap" }}>
       {params.images.map((image) => {
         return (
-          <Box key={image.thumb}>
+          <Box key={image.thumb} sx={{ maxWidth: "min(250px, 100%)" }}>
             <Lightbox params={{ image: image }} />
           </Box>
         );
